@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <title>custom marker</title>
+
+  <style>
+    /* Always set the map height explicitly to define the size of the div
+    * element that contains the map. */
+    #actualmap {
+      height: 100%;
+    }
+
+    /* Optional: Makes the sample page fill the window. */
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    #content {
+      text-align: center;
+      padding: 0 10px;
+    }
+
+    #content h4 {
+      font-size: 24px;
+    }
+
+    #content h5{
+      font-size: 20px;
+      font-weight: 400;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    #content p{
+      font-size: 14px;
+    }
+
+    #content .markerlinks{
+      font-size: 20px;
+      font-weight: 500;
+      text-decoration: none;
+      color: black;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="actualmap"></div>
+
+  <script>
+    function initMap() {
+      var actualmap = new google.maps.Map(document.getElementById('actualmap'), {
+        zoom: 4.8,
+        center: {
+          lat: 50,
+          lng: 10
+        },
+      });
+
+//_____________________________________________________________________________
+      var MARKER = {
+        lat: 45.75,
+        lng: 4.85
+      };
+// define the HTML content
+      var MARKER_content =
+        '<div id="content"><h4 class="firstHeading">' +
+                    'Kendama is a gang' +
+        '</h4> <h5>' +
+                    'wtf is a kendama' +
+        '</h5> <p>'  +
+          'The Kendama is a traditional wooden toy from Japan. Also called the Japanese cup and ball , this is a game which is to catch the ball with the handle while chaining techniques and fun tricks. You\'ll understanKendama is a gangd the Kendama is a game of skill.' + 
+        '</p>'  + 
+                    '<a class="markerlinks" href="https://www.kendama-france.com/kendama-presentation/#"> > More < </a>' +
+        '</p></div>'
+// assign content to the marker popup
+        var MARKER_info = new google.maps.InfoWindow({
+          content: MARKER_content,
+          maxWidth: 400
+        });
+// place the marker on the map at his position
+        var MARKER = new google.maps.Marker({
+          map: actualmap,
+          position: MARKER,
+        });
+// add the click feature on the marker and open the popup at the marker pos
+          MARKER.addListener('click', function () {
+            MARKER_info.open(actualmap, MARKER);
+        });
+//_____________________________________________________________________________
+}
+  </script>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=___YOUR_API_KEY___&callback=initMap">
+  </script>
+</body>
+
+</html>
